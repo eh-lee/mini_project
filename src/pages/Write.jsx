@@ -10,12 +10,12 @@ import { cookies } from "../shared/cookie";
 function Write() {
   const navigate = useNavigate();
   // ========= LEH "Add Guard" ===========
-  useEffect(() => {
-    const token = cookies.get("token");
-    if (!token) {
-      navigate("/login");
-    }
-  });
+  // useEffect(() => {
+  //   const token = cookies.get("token");
+  //   if (!token) {
+  //     navigate("/login");
+  //   }
+  // });
   // ========= LEH "Add Guard" ===========
 
   const dispatch = useDispatch();

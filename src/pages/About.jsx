@@ -4,14 +4,14 @@ import { cookies } from "../shared/cookie";
 
 function About() {
   // ========= LEH "Add Guard" ===========
-  const navi = useNavigate();
+  // const navi = useNavigate();
 
-  useEffect(() => {
-    const token = cookies.get("token");
-    if (!token) {
-      navi("/login");
-    }
-  });
+  // useEffect(() => {
+  //   const token = cookies.get("token");
+  //   if (!token) {
+  //     navi("/login");
+  //   }
+  // });
   // ========= LEH "Add Guard" ===========
   return <div>About</div>;
 }

@@ -52,13 +52,13 @@ const LogIn = () => {
   // ============== non-thunk ver ====================
 
   //============= guard ================
-  useEffect(() => {
-    const token = cookies.get("token");
-    if (token) {
-      navi("/");
-      alert("먼저 로그아웃을 해 주세요.");
-    }
-  });
+  // useEffect(() => {
+  //   const token = cookies.get("token");
+  //   if (token) {
+  //     navi("/");
+  //     alert("먼저 로그아웃을 해 주세요.");
+  //   }
+  // });
 
   return (
     <Container onSubmit={submitButtonHandler}>
