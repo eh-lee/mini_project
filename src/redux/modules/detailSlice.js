@@ -7,6 +7,7 @@ export const __getDetail = createAsyncThunk(
   "getDetail",
   async (postId, thunkAPI) => {
     // console.log(postId);
+    console.log(postId);
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_SERVER_URL}/api/posts/${postId}`,
@@ -15,6 +16,7 @@ export const __getDetail = createAsyncThunk(
             Authorization: `${jwt}`,
           },
         }
+        // `${process.env.REACT_APP_SERVER_KEY}/detail/${postId}`
       );
       // console.log(response);
       return thunkAPI.fulfillWithValue(response.data);
@@ -51,10 +53,11 @@ export const __deleteDetail = createAsyncThunk(
 
 //수정
 export const __editDetail = createAsyncThunk(
-  "editDetail",
+  "editComment",
   async (payload, thunkAPI) => {
-    // console.log(payload);
-    // console.log(payload.postId);
+    console.log(payload);
+    console.log(payload.postId);
+    console.log(payload.title);
     try {
       await axios.patch(
         `${process.env.REACT_APP_SERVER_URL}/api/posts/${payload.postId}`,
@@ -74,7 +77,6 @@ export const __editDetail = createAsyncThunk(
       return thunkAPI.fulfillWithValue(true);
     } catch (error) {
       const errorMag = error.response.data.msg;
-      // console.log(error);
       alert(`${errorMag}`);
       return thunkAPI.rejectWithValue(false);
     }
@@ -87,7 +89,7 @@ const initialState = {
   detail: [],
   isLoading: false,
   isDelete: false,
-  isEdit: false,
+  // isEdit: false,
   error: null,
 };
 
@@ -124,7 +126,7 @@ export const detailSlice = createSlice({
       state.isLoading = false;
       // state.error = true;
     },
-    //수정
+    // 수정
     [__editDetail.pending]: (state) => {
       state.isEdit = false;
       state.isLoading = false;
@@ -138,7 +140,7 @@ export const detailSlice = createSlice({
     [__editDetail.rejected]: (state, action) => {
       state.isEdit = action.payload;
       state.isLoading = false;
-      // state.error = true;
+      state.error = true;
     },
   },
 });

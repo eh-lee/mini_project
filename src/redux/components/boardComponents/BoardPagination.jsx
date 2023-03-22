@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styled from "styled-components";
 
 function BoardPagination({ page, totalPosts, limit, setPage }) {
   const numPages = Math.ceil(totalPosts / limit);
@@ -8,9 +9,9 @@ function BoardPagination({ page, totalPosts, limit, setPage }) {
   //console.log({"currPage is":currPage, "firsNum is" : firstNum, "page is" : page})
 
   return (
-    <div>
+    <Pagination>
       <div>
-        <button
+        <NBtn
           onClick={() => {
             setPage(page - 1);
             setCurrPage(page - 2);
@@ -18,19 +19,19 @@ function BoardPagination({ page, totalPosts, limit, setPage }) {
           disabled={page === 1}
         >
           &lt;
-        </button>
-        <button
+        </NBtn>
+        <NBtn
           onClick={() => setPage(firstNum)}
           aria-current={page === firstNum ? "page" : null}
         >
           {firstNum}
-        </button>
+        </NBtn>
         {Array(4)
           .fill()
           .map((_, i) => {
             if (i <= 2) {
               return (
-                <button
+                <NBtn
                   border="true"
                   key={i + 1}
                   onClick={() => {
@@ -39,22 +40,22 @@ function BoardPagination({ page, totalPosts, limit, setPage }) {
                   aria-current={page === firstNum + 1 + i ? "page" : null}
                 >
                   {firstNum + 1 + i}
-                </button>
+                </NBtn>
               );
             } else if (i >= 3) {
               return (
-                <button
+                <NBtn
                   border="true"
                   key={i + 1}
                   onClick={() => setPage(lastNum)}
                   aria-current={page === lastNum ? "page" : null}
                 >
                   {lastNum}
-                </button>
+                </NBtn>
               );
             }
           })}
-        <button
+        <NBtn
           onClick={() => {
             setPage(page + 1);
             setCurrPage(page);
@@ -62,10 +63,24 @@ function BoardPagination({ page, totalPosts, limit, setPage }) {
           disabled={page === numPages}
         >
           &gt;
-        </button>
+        </NBtn>
       </div>
-    </div>
+    </Pagination>
   );
 }
 
 export default BoardPagination;
+
+const Pagination = styled.div`
+  /* background-color: brown; */
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+  position: absolute;
+  bottom: 0;
+  left: 40%;
+`;
+
+const NBtn = styled.button`
+  border: none;
+`;

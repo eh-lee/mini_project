@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { StHeaderTitle, StPage, SubHeader } from "../GlobalStyles";
 import Button from "../redux/components/Buttons";
 import { __addWrite } from "../redux/modules/writeSlice";
 import { cookies } from "../shared/cookie";
@@ -50,51 +52,107 @@ function Write() {
 
   return (
     <>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-      >
-        <input
-          type="text"
-          value={classNumber}
-          placeholder="기수를 적어주세요"
-          onChange={(e) => {
-            setClassNumber(e.target.value);
+      <StPage>
+        <SubHeader>
+          <StHeaderTitle>Write&nbsp;&nbsp;&nbsp;</StHeaderTitle>
+        </SubHeader>
+
+        <StForm
+          onSubmit={(e) => {
+            e.preventDefault();
           }}
-        />
-        <input
-          type="text"
-          value={specialty}
-          placeholder="주특기를 적어주세요"
-          onChange={(e) => {
-            setSpecialty(e.target.value);
-          }}
-        />
-        <input
-          type="text"
-          value={title}
-          placeholder="제목을 적어주세요"
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
-        />
-        <textarea
-          type="text"
-          value={content}
-          placeholder="내용을 적어주세요"
-          onChange={(e) => {
-            setContent(e.target.value);
-          }}
-        />
-        <Button
-          text={"업로드하기"}
-          borderColor={"#5385e7"}
-          onClick={submitHandler}
-        />
-      </form>
+        >
+          <ClassSpecialty>
+            <StClass
+              type="text"
+              value={classNumber}
+              placeholder="기수를 적어주세요"
+              onChange={(e) => {
+                setClassNumber(e.target.value);
+              }}
+            />
+            <StSpecialty
+              type="text"
+              value={specialty}
+              placeholder="주특기를 적어주세요"
+              onChange={(e) => {
+                setSpecialty(e.target.value);
+              }}
+            />
+          </ClassSpecialty>
+          <StTitle
+            type="text"
+            value={title}
+            placeholder="제목을 적어주세요"
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+          />
+          <StContent
+            type="text"
+            value={content}
+            placeholder="내용을 적어주세요"
+            onChange={(e) => {
+              setContent(e.target.value);
+            }}
+          />
+          <Button text={"업로드하기"} onClick={submitHandler} />
+        </StForm>
+      </StPage>
     </>
   );
 }
 
 export default Write;
+
+const StForm = styled.form`
+  /* background-color: wheat; */
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  min-height: 600px;
+  gap: 20px;
+`;
+
+const ClassSpecialty = styled.div`
+  display: flex;
+  gap: 30px;
+`;
+
+const StClass = styled.input`
+  background-color: lightgray;
+  border-radius: 20px;
+  border: 1px solid black;
+  width: 260px;
+  height: 40px;
+  padding: 0px 20px;
+`;
+const StSpecialty = styled.input`
+  background-color: lightgray;
+  border-radius: 20px;
+  border: 1px solid black;
+  width: 260px;
+  height: 40px;
+  padding: 0px 20px;
+`;
+
+const StTitle = styled.input`
+  background-color: lightgray;
+  border-radius: 20px;
+  border: 1px solid black;
+  width: 600px;
+  height: 40px;
+  padding: 0px 20px;
+`;
+
+const StContent = styled.textarea`
+  background-color: lightgray;
+  border-radius: 20px;
+  border: 1px solid black;
+  resize: none;
+  width: 600px;
+  height: 400px;
+  padding: 20px;
+`;

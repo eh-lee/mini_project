@@ -23,6 +23,7 @@ const StButton = styled.button`
   background-color: ${(props) => props.backgroundColor};
   border-radius: 50px;
   padding: 10px;
+  height: 40px;
   color: ${(props) => props.borderColor};
   font-size: 17px;
   &:hover {

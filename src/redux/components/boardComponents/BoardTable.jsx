@@ -6,15 +6,15 @@ function BoardTable({ board }) {
   const navigate = useNavigate();
   return (
     <>
-      <div>
+      <TableBox>
         <Table>
           <Thead>
             <Tr>
-              <Th>게시물 번호</Th>
-              <Th>기수-주특기</Th>
-              <Th>제목</Th>
-              <Th>닉네임</Th>
-              <Th>작성시간</Th>
+              <ThM>게시물 번호</ThM>
+              <ThM>기수-주특기</ThM>
+              <ThL>제목</ThL>
+              <ThM>닉네임</ThM>
+              <ThL>작성시간</ThL>
             </Tr>
           </Thead>
           <Tbody>
@@ -38,31 +38,54 @@ function BoardTable({ board }) {
             })}
           </Tbody>
         </Table>
-      </div>
+      </TableBox>
     </>
   );
 }
 
 export default BoardTable;
 
+const TableBox = styled.div`
+  /* background-color: green; */
+  /* width: 90%; */
+  margin: auto;
+  border-radius: 20px;
+  padding: 40px 10px;
+  max-width: 1000px;
+`;
+
 const Table = styled.table`
-  width: 80%;
-  margin: 0 auto;
+  width: 90%;
+  margin: 0px auto;
+
   text-align: center;
+  /* background-color: skyblue; */
 `;
 const Thead = styled.thead`
-  border-bottom: 1px solid gray;
-  padding: 0;
+  border-bottom: 2px solid gray;
+  border-top: 2px solid gray;
   font-size: 16px;
   padding: 10px 5px;
   font-weight: bold;
 `;
 const Tr = styled.tr`
   cursor: pointer;
+  padding: 20px;
+  border-top: 1px solid gray;
 `;
-const Th = styled.th``;
-const Tbody = styled.tbody``;
+const ThL = styled.th`
+  padding: 10px 20px;
+  text-align: center;
+  width: 220px;
+`;
+const ThM = styled.th`
+  padding: 10px 20px;
+  text-align: center;
+  width: 85px;
+`;
+const Tbody = styled.tbody`
+  padding-top: 20px;
+`;
 const Td = styled.td`
-  margin-top: 10px;
-  padding: 10px;
+  padding: 10px 20px;
 `;

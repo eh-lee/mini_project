@@ -74,7 +74,7 @@ export const __editComment = createAsyncThunk(
       return thunkAPI.fulfillWithValue(true);
     } catch (error) {
       const errorMag = error.response.data.msg;
-      console.log(error);
+      // console.log(error);
       alert(`${errorMag}`);
       return thunkAPI.rejectWithValue(false);
     }
