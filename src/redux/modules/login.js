@@ -28,7 +28,7 @@ export const __login = createAsyncThunk("logIn", async (thisUser, thunk) => {
   try {
     const response = await apis.post("api/login", thisUser);
     cookies.set("token", response.headers.authorization, { path: "/" });
-    cookies.set("nickname", response.data.nickname, { path: "/" });
+    // cookies.set("nickname", response.data.nickname, { path: "/" });
     return thunk.fulfillWithValue(thisUser);
   } catch (e) {
     console.log(e);
