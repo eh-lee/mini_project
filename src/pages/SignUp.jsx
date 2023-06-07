@@ -7,6 +7,7 @@ import EHInput from "../redux/components/EHInput";
 import StButton from "../redux/components/Buttons";
 import Flex from "../redux/components/elem/Flex";
 import Space from "../redux/components/elem/Space";
+import sanitizeInput from "../redux/modules/sanitizeInput";
 const SignUp = () => {
   const dispatch = useDispatch();
   const navi = useNavigate();
@@ -120,7 +121,15 @@ const SignUp = () => {
       return;
     }
 
-    const result = await dispatch(__signUp(user));
+    const sanitizedUser = {
+      username: sanitizeInput(user.username),
+      password: sanitizeInput(user.password),
+      passwordCheck: sanitizeInput(user.passwordCheck),
+      nickname: sanitizeInput(user.nickname),
+      email: sanitizeInput(user.email),
+    };
+
+    const result = await dispatch(__signUp(sanitizedUser));
     if (result.type === "signUp/fulfilled") {
       navi("/login");
     }
