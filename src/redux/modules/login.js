@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { apis } from "../../shared/axios";
 import { cookies } from "../../shared/cookie";
+import { fetchCsrfToken } from "../../shared/fetchCsrfToken";
 
 // const initialState = [{}];
 
@@ -26,9 +27,13 @@ export const __signUp = createAsyncThunk("signUp", async (newUser, thunk) => {
 
 export const __login = createAsyncThunk("logIn", async (thisUser, thunk) => {
   try {
-    const response = await apis.post("api/login", thisUser);
+    const csrfToken = await fetchCsrfToken();
+    const response = await apis.post("api/login", thisUser, {
+      headers: {
+        "X-CSRF-Token": csrfToken,
+      },
+    });
     cookies.set("token", response.headers.authorization, { path: "/" });
-    // cookies.set("nickname", response.data.nickname, { path: "/" });
     return thunk.fulfillWithValue(thisUser);
   } catch (e) {
     console.log(e);
@@ -38,6 +43,7 @@ export const __login = createAsyncThunk("logIn", async (thisUser, thunk) => {
     return thunk.rejectWithValue(e);
   }
 });
+
 
 const initialState = {
   isLogin: false,
