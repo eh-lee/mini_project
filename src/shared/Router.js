@@ -14,23 +14,6 @@ const Router = () => {
   const isLogin = useSelector((state) => state.auth.isLogin);
 
   return (
-    //     <BrowserRouter>
-
-    //       <Header />
-    //       <Routes>
-    //         <Route path="/" element={<Home />} />
-    //         <Route path="/about" element={<About />} />
-    //         <Route path="/board" element={<Board />} />
-    //         <Route path="/detail/:id" element={<Detail />} />
-    //         <Route path="/write" element={<Write />} />
-    //         <Route path="/login" element={<LogIn />} />
-    //         <Route path="/signup" element={<SignUp />} />
-    //       </Routes>
-    //     </BrowserRouter>
-    //   );
-    // };
-
-    // 요 놈 문제 있어..
     <BrowserRouter>
       {isLogin === true ? <Header /> : null}
       <Routes>
