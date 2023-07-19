@@ -7,6 +7,7 @@ import EHInput from "../redux/components/EHInput";
 import Flex from "../redux/components/elem/Flex";
 import Space from "../redux/components/elem/Space";
 import StButton from "../redux/components/Buttons";
+import sanitizeInput from "../redux/modules/sanitizeInput";
 import { cookies } from "../shared/cookie";
 
 const LogIn = () => {
@@ -26,9 +27,14 @@ const LogIn = () => {
   };
 
   // =================== thunk ver ====================
+
   const submitButtonHandler = async (e) => {
     e.preventDefault();
-    const response = await dispatch(__login(user));
+    const sanitizedUser = {
+      username: sanitizeInput(user.username),
+      password: sanitizeInput(user.password),
+    };
+    const response = await dispatch(__login(sanitizedUser));
     if (response.type === "logIn/fulfilled") {
       dispatch(isLoginActions.login());
       alert("로그인 되었습니다.");
